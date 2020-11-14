@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Add New Project</title>
+</head>
+<body>
+
+    <div>
+
+        <h4>Current Projects</h4>
+
+        <table>
+            <thead>
+            <tr>
+                <th>
+                    Project Name
+                </th>
+                <th>
+                    Project Stage
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="aProject : ${projectsList}">
+                <td th:text="${aProject.name}"></td>
+                <td th:text="${aProject.stage}"></td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

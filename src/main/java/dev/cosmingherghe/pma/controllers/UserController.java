@@ -9,12 +9,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @GetMapping("/")
+    public String displayUsers(Model model) {
+
+        List<User> users = (List<User>) userRepository.findAll();
+
+        model.addAttribute("usersList", users);
+
+        return "usersList";
+    }
 
     @GetMapping("/new")
     public String addNewUser(Model model) {

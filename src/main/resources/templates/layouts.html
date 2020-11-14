@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+
+<head th:fragment = "header">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Projects</title>
+</head>
+<body>
+
+
+<nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/projects/new">Projects</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/user/new">Users</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div>
+
+    <h4>Current Projects</h4>
+
+    <table>
+        <thead>
+        <tr>
+            <th>
+                Project Name
+            </th>
+            <th>
+                Project Stage
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="aProject : ${projectsList}">
+            <td th:text="${aProject.name}"></td>
+            <td th:text="${aProject.stage}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h4>Users</h4>
+
+    <table>
+        <thead>
+        <tr>
+            <th>
+                First Name
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="aUser : ${usersList}">
+            <td th:text="${aUser.firstName}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

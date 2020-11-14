@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/projects")
 public class ProjectController {
@@ -20,9 +22,14 @@ public class ProjectController {
     @GetMapping("/new")
     public String displayNewProjectForm(Model model) {
 
+        //add project
         Project aProject = new Project();
-
         model.addAttribute("project", aProject);
+
+        //query database for projects
+        List<Project> projects = (List<Project>) projectRepository.findAll();
+        model.addAttribute("projectsList", projects);
+
         return "/projects/new-project";
     }
 

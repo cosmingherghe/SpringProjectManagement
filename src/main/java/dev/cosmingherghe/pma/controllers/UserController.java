@@ -18,21 +18,16 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping("/")
-    public String displayUsers(Model model) {
-
-        List<User> users = (List<User>) userRepository.findAll();
-
-        model.addAttribute("usersList", users);
-
-        return "/users/usersList";
-    }
-
     @GetMapping("/new")
     public String addNewUser(Model model) {
 
+        //add user
         User aUser = new User();
         model.addAttribute("user", aUser);
+
+        //query database for users
+        List<User> users = (List<User>) userRepository.findAll();
+        model.addAttribute("usersList", users);
 
         return "/users/new-user";
     }

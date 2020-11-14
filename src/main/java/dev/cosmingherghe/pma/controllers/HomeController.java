@@ -32,6 +32,6 @@ public class HomeController {
         List<User> users = (List<User>) userRepository.findAll();
         model.addAttribute("usersList", users);
 
-        return "home";
+        return "main/home";
     }
 }

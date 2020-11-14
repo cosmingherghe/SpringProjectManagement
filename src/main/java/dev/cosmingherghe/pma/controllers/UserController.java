@@ -25,7 +25,7 @@ public class UserController {
 
         model.addAttribute("usersList", users);
 
-        return "usersList";
+        return "/users/usersList";
     }
 
     @GetMapping("/new")
@@ -34,7 +34,7 @@ public class UserController {
         User aUser = new User();
         model.addAttribute("user", aUser);
 
-        return "/new-user";
+        return "/users/new-user";
     }
 
     @PostMapping("/save")

@@ -12,11 +12,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
     @Autowired
     UserRepository userRepository;
+
+    @GetMapping("/")
+    public String displayUsers(Model model){
+        //query database for users
+        List<User> users = (List<User>) userRepository.findAll();
+        model.addAttribute("usersList", users);
+
+        return "/users/list-users";
+    }
 
     @GetMapping("/new")
     public String addNewUser(Model model) {
@@ -24,10 +33,6 @@ public class UserController {
         //add user
         User aUser = new User();
         model.addAttribute("user", aUser);
-
-        //query database for users
-        List<User> users = (List<User>) userRepository.findAll();
-        model.addAttribute("usersList", users);
 
         return "/users/new-user";
     }
@@ -37,6 +42,6 @@ public class UserController {
 
         userRepository.save(user);
 
-        return "redirect:/user/new"; //to prevent duplicates
+        return "redirect:/users/new"; //to prevent duplicates
     }
 }

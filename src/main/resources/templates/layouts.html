@@ -14,7 +14,7 @@
 
 
 <nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Project IO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -22,24 +22,29 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/projects/new">Projects</a>
+                <a class="nav-link" href="/projects/">Projects</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/new">Users</a>
+                <a class="nav-link" href="/users/">Users</a>
             </li>
         </ul>
     </div>
 </nav>
 
-<div>
+<div th:fragment = "CurrentProjects">
 
     <h4>Current Projects</h4>
 
-    <table>
-        <thead>
+    <a th:href="@{/projects/new}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Project
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
         <tr>
             <th>
                 Project Name
@@ -57,7 +62,19 @@
         </tbody>
     </table>
 
-    <h4>Users</h4>
+</div>
+
+<div th:fragment = "CurrentUsers">
+    <h4>Current Users</h4>
+    <hr>
+
+    <a th:href="@{/users/new}"
+       class="btn btn-primary btn-sm mb-3">
+        Add User
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
 
     <table>
         <thead>

@@ -7,7 +7,7 @@
 <nav th:replace="layouts :: navbar"></nav>
 
     <div class="container">
-        <form action="/user/save" th:object="${user}" method="POST">
+        <form action="/users/save" th:object="${user}" method="POST">
 
             <input type="text" placeholder="First Name" th:field="${user.firstName}">
             <input type="text" placeholder="Password" th:field="${user.passwd}">

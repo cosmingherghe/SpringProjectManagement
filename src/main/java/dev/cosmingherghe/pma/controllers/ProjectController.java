@@ -19,16 +19,22 @@ public class ProjectController {
     @Autowired
     ProjectRepository projectRepository;
 
+    @GetMapping("/")
+    public String displayProjects(Model model) {
+
+        //query database for projects
+        List<Project> projects = (List<Project>) projectRepository.findAll();
+        model.addAttribute("projectsList", projects);
+
+        return "/projects/list-projects";
+    }
+
     @GetMapping("/new")
     public String displayNewProjectForm(Model model) {
 
         //add project
         Project aProject = new Project();
         model.addAttribute("project", aProject);
-
-        //query database for projects
-        List<Project> projects = (List<Project>) projectRepository.findAll();
-        model.addAttribute("projectsList", projects);
 
         return "/projects/new-project";
     }

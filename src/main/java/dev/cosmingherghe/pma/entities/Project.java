@@ -1,9 +1,7 @@
 package dev.cosmingherghe.pma.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Project {
@@ -16,6 +14,13 @@ public class Project {
     private String stage; // Complete, In Progress, Not Started
     private String description;
 
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
+                , fetch = FetchType.LAZY)
+    @JoinTable(name = "users_projects",
+            joinColumns = @JoinColumn(name = "project_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> users;
+
     public Project() {
     }
 
@@ -23,6 +28,14 @@ public class Project {
         this.name = name;
         this.stage = stage;
         this.description = description;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public long getProjectId() {

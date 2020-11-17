@@ -1,9 +1,7 @@
 package dev.cosmingherghe.pma.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -15,12 +13,27 @@ public class User {
     private String firstName;
     private String passwd;
 
+    @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
+            , fetch = FetchType.LAZY)
+    @JoinTable(name = "users_projects",
+                joinColumns = @JoinColumn(name = "user_id"),
+                inverseJoinColumns = @JoinColumn(name = "project_id"))
+    private List<Project> projects;
+
     public User() {
     }
 
     public User(String firstName, String passwd) {
         this.firstName = firstName;
         this.passwd = passwd;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
     }
 
     public Long getUserId() {

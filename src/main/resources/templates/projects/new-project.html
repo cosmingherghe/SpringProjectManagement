@@ -7,18 +7,24 @@
     <nav th:replace="layouts :: navbar"></nav>
 
     <div class="container">
-        <form action="/projects/save" th:object="${project}" method="POST">
+        <form action="/projects/save" th:object="${theProject}" method="POST">
 
-            <input type="text" placeholder="Project Name" th:field="${project.name}">
+            <input type="text" placeholder="Project Name" th:field="${theProject.name}">
 
-            <select th:field="${project.stage}">
+            <select th:field="${theProject.stage}">
                 <option th:value="NOTSTARTED"> Not Started</option>
                 <option th:value="INPROGRESS"> In Progress</option>
                 <option th:value="COMPLETED"> Completed</option>
             </select>
 
-            <textarea type="text" placeholder="Enter Project Description" th:field="${project.description}"></textarea>
+            <textarea type="text" placeholder="Enter Project Description" th:field="${theProject.description}"></textarea>
 
+            <select th:field="*{users}" multiple="multiple">
+                <option th:each="user : ${allUsers}"
+                        th:value="${user.userId}"
+                        th:text="${user.firstName}">
+                </option>
+            </select>
             <button type="submit">Add Project</button>
 
         </form>

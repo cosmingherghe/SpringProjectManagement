@@ -1,6 +1,8 @@
 package dev.cosmingherghe.pma.controllers;
 
+import dev.cosmingherghe.pma.dao.ProjectRepository;
 import dev.cosmingherghe.pma.dao.UserRepository;
+import dev.cosmingherghe.pma.entities.Project;
 import dev.cosmingherghe.pma.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class UserController {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    ProjectRepository projectRepository;
+
     @GetMapping("/")
     public String displayUsers(Model model){
         //query database for users
@@ -30,9 +35,11 @@ public class UserController {
     @GetMapping("/new")
     public String addNewUser(Model model) {
 
-        //add user
-        User aUser = new User();
-        model.addAttribute("user", aUser);
+        User user = new User();
+        List<Project> projects = (List<Project>) projectRepository.findAll();
+
+        model.addAttribute("theUser", user);
+        model.addAttribute("allProjects", projects);
 
         return "/users/new-user";
     }

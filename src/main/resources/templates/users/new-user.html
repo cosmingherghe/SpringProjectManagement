@@ -7,31 +7,23 @@
 <nav th:replace="layouts :: navbar"></nav>
 
     <div class="container">
-        <form action="/users/save" th:object="${user}" method="POST">
+        <form action="/users/save" th:object="${theUser}" method="POST">
 
-            <input type="text" placeholder="First Name" th:field="${user.firstName}">
-            <input type="text" placeholder="Password" th:field="${user.passwd}">
+            <input type="text" placeholder="First Name" th:field="${theUser.firstName}">
+            <input type="text" placeholder="Password" th:field="${theUser.passwd}">
+
+            <select th:field="*{projects}" multiple="multiple">
+                <option th:each="project : ${allProjects}"
+                        th:value="${project.projectId}"
+                        th:text="${project.name}">
+                </option>
+            </select>
 
             <button type="submit">Add User</button>
 
         </form>
 
-        <h4>Users</h4>
-
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    First Name
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="aUser : ${usersList}">
-                <td th:text="${aUser.firstName}"></td>
-            </tr>
-            </tbody>
-        </table>
+        <div th:replace="layouts :: CurrentUsers"></div>
 </div>
 
 </body>

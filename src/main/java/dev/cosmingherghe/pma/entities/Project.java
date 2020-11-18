@@ -1,6 +1,7 @@
 package dev.cosmingherghe.pma.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -68,5 +69,13 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    // convenience method:
+    public void addUser(User user) {
+        if(users == null) {
+            users = new ArrayList<>();
+        }
+        users.add(user);
     }
 }

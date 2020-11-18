@@ -1,6 +1,7 @@
 package dev.cosmingherghe.pma.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -58,5 +59,13 @@ public class User {
 
     public void setPasswd(String passwd) {
         this.passwd = passwd;
+    }
+
+    // convenience method:
+    public void addProject(Project project) {
+        if(projects == null) {
+            projects = new ArrayList<>();
+        }
+        projects.add(project);
     }
 }

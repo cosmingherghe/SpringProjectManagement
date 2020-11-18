@@ -25,6 +25,7 @@ public class ProjectManagementAppApplication {
 		SpringApplication.run(ProjectManagementAppApplication.class, args);
 	}
 
+	//  seeding the database with some pre-existing data
 	@Bean
 	CommandLineRunner runner() {
 

@@ -1,4 +1,4 @@
-var projStats = new Chart(document.getElementById("myChart"), {
+var projStats = new Chart(document.getElementById("projectsChart"), {
     // The type of chart we want to create
     type: 'pie',
 

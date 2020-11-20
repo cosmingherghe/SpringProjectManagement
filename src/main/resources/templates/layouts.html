@@ -40,30 +40,38 @@
 
     <h4>Current Projects</h4>
 
-    <a th:href="@{/projects/new}"
-       class="btn btn-primary btn-sm mb-3">
-        Add Project
-    </a>
+    <div class="row">
+        <div class="col-md-6">
+            <a th:href="@{/projects/new}"
+               class="btn btn-primary btn-sm mb-3">
+                Add Project
+            </a>
 
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
-        <tr>
-            <th>
-                Project Name
-            </th>
-            <th>
-                Project Stage
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="aProject : ${projectsList}">
-            <td th:text="${aProject.name}"></td>
-            <td th:text="${aProject.stage}"></td>
-        </tr>
-        </tbody>
-    </table>
+            <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                <tr>
+                    <th>
+                        Project Name
+                    </th>
+                    <th>
+                        Project Stage
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="aProject : ${projectsList}">
+                    <td th:text="${aProject.name}"></td>
+                    <td th:text="${aProject.stage}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <div class="col-md-4">
+            <canvas id="projectsChart" height="50" width="50" ></canvas>
+        </div>
+
+    </div>
 </div>
 
 <div th:fragment = "CurrentUsers">
@@ -77,19 +85,20 @@
 
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
-
-    <table>
-        <thead>
         <tr>
             <th>
                 First Name
             </th>
+            <th>
+                Email
+            </th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${usersList}">
-            <td th:text="${user.firstName}"></td>
-        </tr>
+            <tr th:each="user : ${usersList}">
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.email}"></td>
+            </tr>
         </tbody>
     </table>
 

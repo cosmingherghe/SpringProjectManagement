@@ -6,16 +6,16 @@
 <body>
     <nav th:replace="layouts :: navbar"></nav>
 
-    <div>
+    <div class="container">
 
-        <div th:replace="layouts :: CurrentProjects"></div>
+        <div>
+            <div th:replace="layouts :: CurrentProjects"></div>
+        </div>
 
         <div th:replace="layouts :: CurrentUsers"></div>
 
-    </div>
 
-    <div class="col-md-4">
-        <canvas id="myChart" height="50" width="50" ></canvas>
+
     </div>
 
 <script type="text/javascript" th:src="@{/js/projStats.js}"></script>

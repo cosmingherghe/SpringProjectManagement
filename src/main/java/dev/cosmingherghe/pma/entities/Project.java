@@ -8,7 +8,7 @@ import java.util.List;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long projectId;  //outsource responsability to database, to generate an incremental ID
 
     private String name;
@@ -17,7 +17,7 @@ public class Project {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
                 , fetch = FetchType.LAZY)
-    @JoinTable(name = "users_projects",
+    @JoinTable(name = "user_project",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "user_id"))
     private List<User> users;

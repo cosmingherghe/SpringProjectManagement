@@ -8,11 +8,11 @@ import java.util.List;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
 
     private String firstName;
-    private String passwd;
+    private String email;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
             , fetch = FetchType.LAZY)
@@ -24,9 +24,9 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String passwd) {
+    public User(String firstName, String email) {
         this.firstName = firstName;
-        this.passwd = passwd;
+        this.email = email;
     }
 
     public List<Project> getProjects() {
@@ -53,12 +53,12 @@ public class User {
         this.firstName = firstName;
     }
 
-    public String getPasswd() {
-        return passwd;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPasswd(String passwd) {
-        this.passwd = passwd;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     // convenience method:

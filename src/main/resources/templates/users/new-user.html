@@ -10,7 +10,7 @@
         <form action="/users/save" th:object="${theUser}" method="POST">
 
             <input type="text" placeholder="First Name" th:field="${theUser.firstName}">
-            <input type="text" placeholder="Password" th:field="${theUser.passwd}">
+            <input type="text" placeholder="Password" th:field="${theUser.email}">
 
             <select th:field="*{projects}" multiple="multiple">
                 <option th:each="project : ${allProjects}"

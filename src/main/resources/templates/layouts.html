@@ -30,7 +30,7 @@
                 <a class="nav-link" th:href="@{/projects/}">Projects</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" th:href="@{/users/}">Users</a>
+                <a class="nav-link" th:href="@{/employees/}">Employees</a>
             </li>
         </ul>
     </div>
@@ -74,13 +74,13 @@
     </div>
 </div>
 
-<div th:fragment = "CurrentUsers">
-    <h4>Current Users</h4>
+<div th:fragment = "CurrentEmployees">
+    <h4>Current Employees</h4>
     <hr>
 
-    <a th:href="@{/users/new}"
+    <a th:href="@{/employees/new}"
        class="btn btn-primary btn-sm mb-3">
-        Add User
+        Add Employee
     </a>
 
     <table class="table table-bordered table-striped">
@@ -95,10 +95,40 @@
         </tr>
         </thead>
         <tbody>
-            <tr th:each="user : ${usersList}">
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.email}"></td>
+            <tr th:each="employee : ${employeesList}">
+                <td th:text="${employee.firstName}"></td>
+                <td th:text="${employee.email}"></td>
             </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:fragment = "EmployeeProjCount">
+    <h4>Current Employees</h4>
+    <hr>
+
+    <a th:href="@{/employees/new}"
+       class="btn btn-primary btn-sm mb-3">
+        Add Employee
+    </a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <tr>
+            <th>
+                First Name
+            </th>
+            <th>
+                Project Count
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employeeProjCnt : ${employeeListProjCount}">
+            <td th:text="${employeeProjCnt.firstName}"></td>
+            <td th:text="${employeeProjCnt.projectCount}"></td>
+        </tr>
         </tbody>
     </table>
 

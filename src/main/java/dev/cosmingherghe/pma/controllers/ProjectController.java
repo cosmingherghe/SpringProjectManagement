@@ -1,10 +1,10 @@
 package dev.cosmingherghe.pma.controllers;
 
 import dev.cosmingherghe.pma.dao.ProjectRepository;
-import dev.cosmingherghe.pma.dao.UserRepository;
+import dev.cosmingherghe.pma.dao.EmployeeRepository;
+import dev.cosmingherghe.pma.entities.Employee;
 import dev.cosmingherghe.pma.entities.Project;
 
-import dev.cosmingherghe.pma.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +22,7 @@ public class ProjectController {
     ProjectRepository projectRepository;
 
     @Autowired
-    UserRepository userRepository;
+    EmployeeRepository employeeRepository;
 
     @GetMapping("/")
     public String displayProjects(Model model) {
@@ -39,10 +39,10 @@ public class ProjectController {
 
         //add project
         Project project = new Project();
-        List<User> users = (List<User>) userRepository.findAll();
+        List<Employee> employees = (List<Employee>) employeeRepository.findAll();
 
         model.addAttribute("theProject", project);
-        model.addAttribute("allUsers", users);
+        model.addAttribute("allUsers", employees);
 
         return "/projects/new-project";
     }

@@ -7,10 +7,10 @@
 <nav th:replace="layouts :: navbar"></nav>
 
     <div class="container">
-        <form action="/users/save" th:object="${theUser}" method="POST">
+        <form action="/employees/save" th:object="${theEmployee}" method="POST">
 
-            <input type="text" placeholder="First Name" th:field="${theUser.firstName}">
-            <input type="text" placeholder="Password" th:field="${theUser.email}">
+            <input type="text" placeholder="First Name" th:field="${theEmployee.firstName}">
+            <input type="text" placeholder="Password" th:field="${theEmployee.email}">
 
             <select th:field="*{projects}" multiple="multiple">
                 <option th:each="project : ${allProjects}"
@@ -19,11 +19,11 @@
                 </option>
             </select>
 
-            <button type="submit">Add User</button>
+            <button type="submit">Add Employee</button>
 
         </form>
 
-        <div th:replace="layouts :: CurrentUsers"></div>
+        <div th:replace="layouts :: CurrentEmployees"></div>
 </div>
 
 </body>

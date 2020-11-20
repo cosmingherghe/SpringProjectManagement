@@ -5,26 +5,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class User {
+public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long userId;
+    private Long employeeId;
 
     private String firstName;
     private String email;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
             , fetch = FetchType.LAZY)
-    @JoinTable(name = "users_projects",
-                joinColumns = @JoinColumn(name = "user_id"),
+    @JoinTable(name = "employee_project",
+                joinColumns = @JoinColumn(name = "employee_id"),
                 inverseJoinColumns = @JoinColumn(name = "project_id"))
     private List<Project> projects;
 
-    public User() {
+    public Employee() {
     }
 
-    public User(String firstName, String email) {
+    public Employee(String firstName, String email) {
         this.firstName = firstName;
         this.email = email;
     }
@@ -37,12 +37,12 @@ public class User {
         this.projects = projects;
     }
 
-    public Long getUserId() {
-        return userId;
+    public Long getEmployeeId() {
+        return employeeId;
     }
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
+    public void setEmployeeId(Long employeeId) {
+        this.employeeId = employeeId;
     }
 
     public String getFirstName() {

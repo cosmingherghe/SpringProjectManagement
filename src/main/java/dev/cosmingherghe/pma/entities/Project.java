@@ -17,10 +17,10 @@ public class Project {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
                 , fetch = FetchType.LAZY)
-    @JoinTable(name = "user_project",
+    @JoinTable(name = "employee_project",
             joinColumns = @JoinColumn(name = "project_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<User> users;
+            inverseJoinColumns = @JoinColumn(name = "employee_id"))
+    private List<Employee> employees;
 
     public Project() {
     }
@@ -31,12 +31,12 @@ public class Project {
         this.description = description;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setEmployees(List<Employee> employees) {
+        this.employees = employees;
     }
 
     public long getProjectId() {
@@ -72,10 +72,10 @@ public class Project {
     }
 
     // convenience method:
-    public void addUser(User user) {
-        if(users == null) {
-            users = new ArrayList<>();
+    public void addEmployee(Employee employee) {
+        if(employees == null) {
+            employees = new ArrayList<>();
         }
-        users.add(user);
+        employees.add(employee);
     }
 }

@@ -41,7 +41,7 @@ public class HomeController {
         model.addAttribute("projectsList", projects);
 
         //query database for employees
-        List<EmployeeProject> employeeProjectsCount = projectRepository.employeesProjects();
+        List<EmployeeProject> employeeProjectsCount = employeeRepository.employeeProjectsCount();
         model.addAttribute("employeeListProjCount", employeeProjectsCount);
 
         return "main/home";

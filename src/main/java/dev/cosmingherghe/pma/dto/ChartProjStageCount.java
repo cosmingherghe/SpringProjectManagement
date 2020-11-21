@@ -1,7 +1,7 @@
 package dev.cosmingherghe.pma.dto;
 
-public interface ProjectStages {
+public interface ChartProjStageCount {
 
     public String getStage();
-    public int getNumbers();
+    public int getTotal();
 }

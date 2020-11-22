@@ -42,7 +42,7 @@ public class ProjectController {
         List<Employee> employees = (List<Employee>) employeeRepository.findAll();
 
         model.addAttribute("theProject", project);
-        model.addAttribute("allUsers", employees);
+        model.addAttribute("allEmployees", employees);
 
         return "/projects/new-project";
     }

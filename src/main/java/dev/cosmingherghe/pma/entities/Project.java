@@ -8,7 +8,8 @@ import java.util.List;
 public class Project {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_seq")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "project_generator")
+    @SequenceGenerator(name = "project_generator", sequenceName = "project_seq", allocationSize = 1)
     private long projectId;  //outsource responsability to database, to generate an incremental ID
 
     private String name;
@@ -17,7 +18,7 @@ public class Project {
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}
                 , fetch = FetchType.LAZY)
-    @JoinTable(name = "employee_project",
+    @JoinTable(name = "project_employee",
             joinColumns = @JoinColumn(name = "project_id"),
             inverseJoinColumns = @JoinColumn(name = "employee_id"))
     private List<Employee> employees;

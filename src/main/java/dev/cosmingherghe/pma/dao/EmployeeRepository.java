@@ -10,7 +10,7 @@ import java.util.List;
 public interface EmployeeRepository extends CrudRepository<Employee, Long> {
 
     @Query(nativeQuery = true, value = "SELECT e.first_name as firstName, COUNT(pe.employee_id) as projectCount " +
-            "FROM employee e left join employee_project pe ON pe.employee_id = e.employee_id " +
+            "FROM employee e left join project_employee pe ON pe.employee_id = e.employee_id " +
             "GROUP BY e.first_name ORDER BY projectCount DESC")
     public List<EmployeeProject> employeeProjectsCount();
 }

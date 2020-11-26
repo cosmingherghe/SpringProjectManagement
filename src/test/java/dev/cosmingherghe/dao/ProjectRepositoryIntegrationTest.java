@@ -13,7 +13,7 @@ import org.springframework.test.context.jdbc.Sql.ExecutionPhase;
 import org.springframework.test.context.jdbc.SqlGroup;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.skyscreamer.jsonassert.JSONAssert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 @ContextConfiguration(classes = ProjectManagementAppApplication.class)
 @RunWith(SpringRunner.class)

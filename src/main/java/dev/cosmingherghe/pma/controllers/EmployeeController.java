@@ -4,6 +4,8 @@ import dev.cosmingherghe.pma.dao.ProjectRepository;
 import dev.cosmingherghe.pma.dao.EmployeeRepository;
 import dev.cosmingherghe.pma.entities.Employee;
 import dev.cosmingherghe.pma.entities.Project;
+import dev.cosmingherghe.pma.services.EmployeeService;
+import dev.cosmingherghe.pma.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,15 +20,15 @@ import java.util.List;
 public class EmployeeController {
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    EmployeeService employeeService;
 
     @Autowired
-    ProjectRepository projectRepository;
+    ProjectService projectService;
 
     @GetMapping("/")
     public String displayEmployees(Model model){
         //query database for employees
-        List<Employee> employees = (List<Employee>) employeeRepository.findAll();
+        List<Employee> employees = (List<Employee>) employeeService.findAll();
         model.addAttribute("employeesList", employees);
 
         return "/employees/list-employees";
@@ -36,7 +38,7 @@ public class EmployeeController {
     public String addNewEmployee(Model model) {
 
         Employee employee = new Employee();
-        List<Project> projects = (List<Project>) projectRepository.findAll();
+        List<Project> projects = (List<Project>) projectService.findAll();
 
         model.addAttribute("theEmployee", employee);
         model.addAttribute("allProjects", projects);
@@ -47,7 +49,7 @@ public class EmployeeController {
     @PostMapping("/save")
     public String saveEmployee(Employee employee, Model model) {
 
-        employeeRepository.save(employee);
+        employeeService.save(employee);
 
         return "redirect:/employees/new"; //to prevent duplicates
     }

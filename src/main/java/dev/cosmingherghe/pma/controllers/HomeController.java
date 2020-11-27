@@ -8,6 +8,8 @@ import dev.cosmingherghe.pma.dto.ChartProjStageCount;
 import dev.cosmingherghe.pma.dto.EmployeeProject;
 import dev.cosmingherghe.pma.entities.Project;
 
+import dev.cosmingherghe.pma.services.EmployeeService;
+import dev.cosmingherghe.pma.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -25,10 +27,10 @@ public class HomeController {
     private String projVersion;
 
     @Autowired
-    ProjectRepository projectRepository;
+    ProjectService projectService;
 
     @Autowired
-    EmployeeRepository employeeRepository;
+    EmployeeService employeeService;
 
     @GetMapping("/")
     public String displayHome(Model model) throws JsonProcessingException {
@@ -37,17 +39,17 @@ public class HomeController {
 
         //Convert projData obj into json structure for user in javascript
         Map<String, Object> map = new HashMap<>();
-        List<ChartProjStageCount> projStageCounts = projectRepository.projStageCount();
+        List<ChartProjStageCount> projStageCounts = projectService.projStageCount();
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonProjStageCount = objectMapper.writeValueAsString(projStageCounts);
         model.addAttribute("projStageCount", jsonProjStageCount);
 
         //query database for projects
-        List<Project> projects = (List<Project>) projectRepository.findAll();
+        List<Project> projects = (List<Project>) projectService.findAll();
         model.addAttribute("projectsList", projects);
 
         //query database for employees
-        List<EmployeeProject> employeeProjectsCount = employeeRepository.employeeProjectsCount();
+        List<EmployeeProject> employeeProjectsCount = employeeService.employeeProjectsCount();
         model.addAttribute("employeeListProjCount", employeeProjectsCount);
 
         return "main/home";

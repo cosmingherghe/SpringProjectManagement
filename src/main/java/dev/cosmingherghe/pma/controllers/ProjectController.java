@@ -41,7 +41,7 @@ public class ProjectController {
 
         //add project
         Project project = new Project();
-        List<Employee> employees = (List<Employee>) projectService.findAll();
+        List<Employee> employees = (List<Employee>) employeeService.findAll();
 
         model.addAttribute("theProject", project);
         model.addAttribute("allEmployees", employees);

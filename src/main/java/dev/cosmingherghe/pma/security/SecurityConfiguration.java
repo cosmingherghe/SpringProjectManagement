@@ -3,6 +3,7 @@ package dev.cosmingherghe.pma.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -28,5 +29,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "from user_accounts where username = ?")
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
+    }
+
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests()
+                .antMatchers("/projects/new").hasRole("ADMIN")
+                .antMatchers("/projects/save").hasRole("ADMIN")
+                .antMatchers("/employees/new").hasRole("ADMIN")
+                .antMatchers("/employees/save").hasRole("ADMIN")
+                .antMatchers("/h2-console/**").permitAll()
+                .antMatchers("/").authenticated()
+                .and()
+                .formLogin();
     }
 }

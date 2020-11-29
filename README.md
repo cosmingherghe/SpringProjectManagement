@@ -15,6 +15,8 @@ Topics covered in this project include:
 + Spring MVC
 + Spring Data CRUD Repositories
 + Tymeleaf
++ Using Model Attributes with JavaScript in Spring
+and Thymeleaf
 + Hibernate
 + Spring Annotations
 + Core Spring Concepts

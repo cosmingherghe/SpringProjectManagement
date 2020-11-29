@@ -8,3 +8,24 @@
 1. Download the project
 
 ## How it works 
+
+Topics covered in this project include:
++ Spring Framework 5
++ Spring Boot 2
++ Spring MVC
++ Spring Data CRUD Repositories
++ Tymeleaf
++ Hibernate
++ Spring Annotations
++ Core Spring Concepts
++ PostgreSQL Database
++ Integration Testing
++ Spring Security
++ RESTFul Web Services API
+     
+     
+ 
+
+    
+
+    

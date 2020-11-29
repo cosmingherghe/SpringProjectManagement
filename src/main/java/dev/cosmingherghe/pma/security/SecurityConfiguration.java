@@ -24,9 +24,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication()
                 .usersByUsernameQuery("select username, password, enabled " +
-                        "from user_accounts where username = ?")
+                        "from user_account where username = ?")
                 .authoritiesByUsernameQuery("select username, role " +
-                        "from user_accounts where username = ?")
+                        "from user_account where username = ?")
                 .dataSource(dataSource)
                 .passwordEncoder(bCryptPasswordEncoder);
     }
@@ -38,9 +38,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/projects/save").hasRole("ADMIN")
                 .antMatchers("/employees/new").hasRole("ADMIN")
                 .antMatchers("/employees/save").hasRole("ADMIN")
-                .antMatchers("/h2-console/**").permitAll()
-                .antMatchers("/").authenticated()
+                .antMatchers("/","/**").permitAll()
+                //.antMatchers("/h2-console","/**").permitAll()
+                //.antMatchers("/").authenticated()
                 .and()
                 .formLogin();
+
+//        httpSecurity.csrf().disable();
+//        httpSecurity.headers().frameOptions().disable();
     }
 }

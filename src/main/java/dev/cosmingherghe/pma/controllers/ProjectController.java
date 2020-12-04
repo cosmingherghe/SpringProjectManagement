@@ -53,6 +53,6 @@ public class ProjectController {
     public String saveProject(Project project, Model model) {
         projectService.save(project);
 
-        return "redirect:/projects/new";  //used to prevent duplicate submissions
+        return "redirect:/projects";  //used to prevent duplicate submissions
     }
 }

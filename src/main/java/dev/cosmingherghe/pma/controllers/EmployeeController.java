@@ -51,6 +51,6 @@ public class EmployeeController {
 
         employeeService.save(employee);
 
-        return "redirect:/employees/new"; //to prevent duplicates
+        return "redirect:/employees"; //to prevent duplicates
     }
 }

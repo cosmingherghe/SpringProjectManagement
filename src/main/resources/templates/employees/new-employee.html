@@ -10,7 +10,7 @@
         <form action="/employees/save" th:object="${theEmployee}" method="POST">
 
             <input type="text" placeholder="First Name" th:field="${theEmployee.firstName}">
-            <input type="text" placeholder="Password" th:field="${theEmployee.email}">
+            <input type="text" placeholder="Email address" th:field="${theEmployee.email}">
 
             <select th:field="*{projects}" multiple="multiple">
                 <option th:each="project : ${allProjects}"
@@ -19,6 +19,7 @@
                 </option>
             </select>
 
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
             <button type="submit">Add Employee</button>
 
         </form>

@@ -1,7 +1,5 @@
 package dev.cosmingherghe.pma.controllers;
 
-import dev.cosmingherghe.pma.dao.ProjectRepository;
-import dev.cosmingherghe.pma.dao.EmployeeRepository;
 import dev.cosmingherghe.pma.entities.Employee;
 import dev.cosmingherghe.pma.entities.Project;
 import dev.cosmingherghe.pma.services.EmployeeService;
@@ -51,6 +49,6 @@ public class EmployeeController {
 
         employeeService.save(employee);
 
-        return "redirect:/employees"; //to prevent duplicates
+        return "redirect:/employees/"; //to prevent duplicates
     }
 }

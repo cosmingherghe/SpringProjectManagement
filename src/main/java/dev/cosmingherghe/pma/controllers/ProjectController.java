@@ -1,7 +1,5 @@
 package dev.cosmingherghe.pma.controllers;
 
-import dev.cosmingherghe.pma.dao.ProjectRepository;
-import dev.cosmingherghe.pma.dao.EmployeeRepository;
 import dev.cosmingherghe.pma.entities.Employee;
 import dev.cosmingherghe.pma.entities.Project;
 
@@ -53,6 +51,6 @@ public class ProjectController {
     public String saveProject(Project project, Model model) {
         projectService.save(project);
 
-        return "redirect:/projects";  //used to prevent duplicate submissions
+        return "redirect:/projects/";  //used to prevent duplicate submissions
     }
 }

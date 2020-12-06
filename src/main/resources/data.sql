@@ -27,3 +27,4 @@ insert into project_employee (employee_id, project_id) (select e.employee_id, p.
 
 -- INSERT USER_ACCOUINT
 insert into user_account (user_id, username, password, role, enabled) values (nextval('user_account_seq'), 'admin','$2a$10$u1eUG1PJgizd4utaFvMRsuvn4Ul60HtXifmFvk41chUd3G7X.gNE6', 'ADMIN', TRUE);
+insert into user_account (user_id, username, password, role, enabled) values (nextval('user_account_seq'), 'user','$2a$10$xRqBpAWBQJ1Nu1/p93FWJOUAsSnvsoqIaHSLEQj37hBQGVktf53tG', 'USER', TRUE);

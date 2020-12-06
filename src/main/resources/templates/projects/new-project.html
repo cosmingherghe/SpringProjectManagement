@@ -25,6 +25,8 @@
                         th:text="${employee.firstName}">
                 </option>
             </select>
+
+            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
             <button type="submit">Add Project</button>
 
         </form>

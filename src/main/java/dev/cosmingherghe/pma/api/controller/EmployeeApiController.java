@@ -51,4 +51,9 @@ public class EmployeeApiController {
         return employeeService.save(employee);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable("id") Long id) {
+        employeeService.deleteById(id);
+    }
 }

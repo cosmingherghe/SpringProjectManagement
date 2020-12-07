@@ -29,4 +29,8 @@ public class EmployeeService {
     public Employee findByIdApi(Long id) {
         return employeeRepository.findById(id).get();
     }
+
+    public void deleteById(Long id) {
+        employeeRepository.deleteById(id);
+    }
 }

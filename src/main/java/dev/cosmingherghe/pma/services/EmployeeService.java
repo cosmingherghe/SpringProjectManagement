@@ -4,6 +4,7 @@ import dev.cosmingherghe.pma.dao.EmployeeRepository;
 import dev.cosmingherghe.pma.dto.EmployeeProject;
 import dev.cosmingherghe.pma.entities.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,6 +32,11 @@ public class EmployeeService {
     }
 
     public void deleteById(Long id) {
-        employeeRepository.deleteById(id);
+        try {
+            employeeRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+
+        }
     }
 }

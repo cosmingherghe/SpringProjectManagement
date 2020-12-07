@@ -18,11 +18,19 @@ public class ProjectService {
         return projectRepository.projStageCount();
     }
 
-    public Object findAll() {
+    public Iterable<Project> findAll() {
         return projectRepository.findAll();
     }
 
-    public void save(Project project) {
-        projectRepository.save(project);
+    public Project save(Project project) {
+        return projectRepository.save(project);
+    }
+
+    public Project findByIdApi(Long id) {
+        return projectRepository.findById(id).get();
+    }
+
+    public void deleteById(Long id) {
+        projectRepository.deleteById(id);
     }
 }

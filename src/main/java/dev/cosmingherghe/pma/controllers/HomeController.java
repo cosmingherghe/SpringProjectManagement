@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,14 @@ public class HomeController {
     EmployeeService employeeService;
 
     @RequestMapping("/")
-    public String displayHome(Model model) throws JsonProcessingException {
+    public String displayHome(Model model, Principal principal) throws JsonProcessingException {
+
+        String loggedInUser = "null";
+
+        if(principal != null)
+            loggedInUser = principal.getName();
+
+        model.addAttribute("loggedInUser", loggedInUser);
 
         model.addAttribute("projVersionNumber", projVersion);
 

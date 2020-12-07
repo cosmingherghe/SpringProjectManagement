@@ -3,6 +3,7 @@ package dev.cosmingherghe.pma.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,8 +15,12 @@ public class Project {
     @SequenceGenerator(name = "project_generator", sequenceName = "project_seq", allocationSize = 1)
     private long projectId;  //outsource responsability to database, to generate an incremental ID
 
+    @NotNull
     private String name;
+
+    @NotNull
     private String stage; // Complete, In Progress, Not Started
+
     private String description;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}

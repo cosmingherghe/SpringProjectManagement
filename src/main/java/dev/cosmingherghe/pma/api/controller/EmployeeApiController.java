@@ -37,4 +37,17 @@ public class EmployeeApiController {
         return employeeService.save(employee);
     }
 
+    @PatchMapping( path = "/{id}" , consumes = "application/json")
+    public Employee partialUpdateEmployee(@RequestBody @Valid Employee patchEmployee, @PathVariable("id") Long id) {
+
+        Employee employee = employeeService.findByIdApi(id);
+
+        if (patchEmployee.getEmail() != null)
+            employee.setEmail(patchEmployee.getEmail());
+
+        if (patchEmployee.getFirstName() != null)
+            employee.setFirstName(patchEmployee.getFirstName());
+
+        return employeeService.save(employee);
+    }
 }

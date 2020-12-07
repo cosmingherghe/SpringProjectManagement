@@ -31,5 +31,10 @@ public class EmployeeApiController {
         return employeeService.save(employee);
     }
 
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public Employee updateEmployee(@RequestBody @Valid Employee employee) {
+        return employeeService.save(employee);
+    }
 
 }

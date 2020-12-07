@@ -18,11 +18,15 @@ public class EmployeeService {
         return employeeRepository.employeeProjectsCount();
     }
 
-    public Object findAll() {
+    public Iterable<Employee> findAll() {
         return employeeRepository.findAll();
     }
 
-    public void save(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
+    }
+
+    public Employee findByIdApi(Long id) {
+        return employeeRepository.findById(id).get();
     }
 }

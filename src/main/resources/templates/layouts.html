@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" >
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head th:fragment = "header">
     <meta charset="utf-8">
@@ -33,6 +33,15 @@
                 <a class="nav-link" th:href="@{/employees/}">Employees</a>
             </li>
         </ul>
+        <div th:switch="${loggedInUser}">
+            <div th:case="'null'">
+                <a href="/login"  class="btn btn-primary">Log In</a>
+            </div>
+            <div th:case="*">
+                <button type="button" class="btn btn-outline-success" disabled th:text="${loggedInUser}"> </button>
+                <a href="/logout"  class="btn btn-primary">Log Out</a>
+            </div>
+        </div>
     </div>
 </nav>
 

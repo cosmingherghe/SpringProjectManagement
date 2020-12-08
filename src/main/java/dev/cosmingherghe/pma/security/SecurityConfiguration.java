@@ -10,6 +10,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.sql.DataSource;
 
+import static dev.cosmingherghe.pma.security.ApplicationUserRole.ADMIN;
+
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -35,17 +37,21 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
 
-                .antMatchers("/projects/new").hasAuthority("ADMIN")
-                .antMatchers("/projects/save").hasAuthority("ADMIN")
-                .antMatchers("/employees/new").hasAuthority("ADMIN")
-                .antMatchers("/employees/save").hasAuthority("ADMIN")
+                .antMatchers("/projects/new").hasAuthority(ADMIN.name())
+                .antMatchers("/projects/save").hasAuthority(ADMIN.name())
+                .antMatchers("/employees/new").hasAuthority(ADMIN.name())
+                .antMatchers("/employees/save").hasAuthority(ADMIN.name())
                 .antMatchers("/","/**").permitAll()
                 //.antMatchers("/h2-console","/**").permitAll()
                 //.antMatchers("/").authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
+                //.httpBasic();
                 .formLogin();
 
-        httpSecurity.csrf().disable();
+
+//      httpSecurity.csrf().disable();
 //      httpSecurity.headers().frameOptions().disable();
     }
 }

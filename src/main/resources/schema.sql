@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS project_employee (
 
 CREATE SEQUENCE IF NOT EXISTS user_account_seq;
 
-CREATE TABLE IF NOT EXISTS user_accounts (
+CREATE TABLE IF NOT EXISTS user_account (
     user_id BIGINT NOT NULL DEFAULT nextval('user_account_seq') PRIMARY KEY,
     username varchar(255) NOT NULL,
     password varchar(255) NOT NULL,

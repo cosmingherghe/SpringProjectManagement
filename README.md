@@ -23,6 +23,7 @@ and Thymeleaf
 + PostgreSQL Database
 + Integration Testing
 + Spring Security
++ Google Guava Sets
 + RESTFul Web Services API
      
      

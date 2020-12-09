@@ -8,6 +8,7 @@ import static dev.cosmingherghe.pma.security.AplicationUserAuthority.*;
 
 public enum ApplicationUserRole {
     ADMIN(Sets.newHashSet(PROJECT_READ, PROJECT_WRITE, USER_READ, USER_WRITE)),
+    ADMINTRAINEE(Sets.newHashSet(PROJECT_READ, USER_READ)),
     USER(Sets.newHashSet());
 
     private final Set<AplicationUserAuthority> authorities;

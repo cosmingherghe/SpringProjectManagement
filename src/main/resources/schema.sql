@@ -1,5 +1,7 @@
 CREATE SEQUENCE IF NOT EXISTS employee_seq;
 
+DROP TABLE IF EXISTS employee;
+
 CREATE TABLE IF NOT EXISTS employee (
 
     employee_id BIGINT NOT NULL DEFAULT nextval('employee_seq') PRIMARY KEY,
@@ -10,6 +12,8 @@ CREATE TABLE IF NOT EXISTS employee (
 
 CREATE SEQUENCE IF NOT EXISTS project_seq;
 
+DROP TABLE IF EXISTS project;
+
 CREATE TABLE IF NOT EXISTS project (
 
     project_id BIGINT NOT NULL DEFAULT nextval('project_seq') PRIMARY KEY,
@@ -19,6 +23,7 @@ CREATE TABLE IF NOT EXISTS project (
 
     );
 
+DROP TABLE IF EXISTS project_employee;
 
 CREATE TABLE IF NOT EXISTS project_employee (
 
@@ -28,6 +33,8 @@ CREATE TABLE IF NOT EXISTS project_employee (
 );
 
 CREATE SEQUENCE IF NOT EXISTS user_account_seq;
+
+DROP TABLE IF EXISTS user_account;
 
 CREATE TABLE IF NOT EXISTS user_account (
     user_id BIGINT NOT NULL DEFAULT nextval('user_account_seq') PRIMARY KEY,

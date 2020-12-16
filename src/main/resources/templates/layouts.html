@@ -84,6 +84,7 @@
 </div>
 
 <div th:fragment = "CurrentEmployees">
+
     <h4>Current Employees</h4>
     <hr>
 
@@ -92,17 +93,17 @@
         Add Employee
     </a>
 
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead>
         <tr>
-            <th>First Name </th>
-            <th>Email</th>
+            <th scope="col">First Name </th>
+            <th scope="col">Email</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="employee : ${employeesList}">
-                <td th:text="${employee.firstName}"></td>
-                <td th:text="${employee.email}"></td>
+                <td scope="row" th:text="${employee.firstName}"></td>
+                <td scope="row" th:text="${employee.email}"></td>
                 <td>
                     <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
                         <div class="btn-group" role="group">

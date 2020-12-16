@@ -9,6 +9,9 @@
     <div class="container">
         <form action="/employees/save" th:object="${theEmployee}" method="POST">
 
+            <!-- used when updating , to bind to the needed employee -->
+            <input type="hidden" th:field="${theEmployee.employeeId}" />
+
             <input type="text" placeholder="First Name" th:field="${theEmployee.firstName}">
             <input type="text" placeholder="Email address" th:field="${theEmployee.email}">
 

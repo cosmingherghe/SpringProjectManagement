@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -50,5 +51,15 @@ public class EmployeeController {
         employeeService.save(employee);
 
         return "redirect:/employees/"; //to prevent duplicates
+    }
+
+    @GetMapping("/update")
+    public String updateEmployee(@RequestParam("id") long id, Model model) {
+
+        Employee employee = employeeService.findById(id);
+
+        model.addAttribute("theEmployee", employee);
+
+        return "/employees/new-employee";
     }
 }

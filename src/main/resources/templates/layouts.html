@@ -95,18 +95,26 @@
     <table class="table table-bordered table-striped">
         <thead class="thead-dark">
         <tr>
-            <th>
-                First Name
-            </th>
-            <th>
-                Email
-            </th>
+            <th>First Name </th>
+            <th>Email</th>
         </tr>
         </thead>
         <tbody>
             <tr th:each="employee : ${employeesList}">
                 <td th:text="${employee.firstName}"></td>
                 <td th:text="${employee.email}"></td>
+                <td>
+                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div class="btn-group" role="group">
+                                <a th:href="@{/employees/update(id=${employee.employeeId})}"
+                                    class="btn btn-secondary btn-outline-primary">
+                                    Update</a>
+                                <a th:href="@{/employees/delete(id=${employee.employeeId})}"
+                                    class="btn btn-secondary btn-outline-danger" onclick="if(!(confirm('Delete Employee?'))) return false">
+                                    Delete</a>
+                        </div>
+                    </div>
+                </td>
             </tr>
         </tbody>
     </table>

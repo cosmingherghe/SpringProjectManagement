@@ -7,8 +7,10 @@ import dev.cosmingherghe.pma.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -43,7 +45,10 @@ public class EmployeeController {
     }
 
     @PostMapping("/save")
-    public String saveEmployee(Employee employee, Model model) {
+    public String saveEmployee(@Valid Employee employee, Model model, Errors errors) {
+
+        if(errors.hasErrors())
+            return "/employees/new-employee";
 
         employeeService.save(employee);
 

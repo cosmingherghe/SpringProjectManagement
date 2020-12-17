@@ -3,6 +3,7 @@ package dev.cosmingherghe.pma.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ public class Project {
     @SequenceGenerator(name = "project_generator", sequenceName = "project_seq", allocationSize = 1)
     private long projectId;  //outsource responsability to database, to generate an incremental ID
 
-    @NotNull
+    @NotBlank(message = "Please enter a valid name.")
     private String name;
 
     @NotNull

@@ -6,31 +6,46 @@
 <body>
     <nav th:replace="layouts :: navbar"></nav>
 
-    <div class="container">
-        <form action="/projects/save" th:object="${theProject}" method="POST">
+    <div class="container-md pt-4">
 
-            <input type="text" placeholder="Project Name" th:field="${theProject.name}">
+        <form class="col-lg-8 offset-lg-4 was-validated" action="/projects/save" th:object="${theProject}" method="POST">
 
-            <select th:field="${theProject.stage}">
-                <option th:value="NOTSTARTED"> Not Started</option>
-                <option th:value="INPROGRESS"> In Progress</option>
-                <option th:value="COMPLETED"> Completed</option>
-            </select>
+            <div class="form-group col-md-3">
+                    <input type="text" class="form-control"
+                           placeholder="Project Name" th:field="${theProject.name}" required>
+                   <!-- <div class="valid-feedback">Valid.</div>
+                    <div class="invalid-feedback">Please fill out this field.</div> -->
+            </div>
+            <div class="form-group col-md-3">
+                <select class="form-control is-valid" th:field="${theProject.stage}">
+                    <option th:value="NOTSTARTED"> Not Started</option>
+                    <option th:value="INPROGRESS"> In Progress</option>
+                    <option th:value="COMPLETED"> Completed</option>
+                </select>
+            </div>
+            <div class="form-group col-md-3">
+                <textarea type="text" class="form-control is-valid" placeholder="Enter Project Description" th:field="${theProject.description}"></textarea>
+            </div>
+            <div class="form-group col-md-3">
+                <select class="form-control is-valid" th:field="*{employees}" multiple="multiple">
+                    <option th:each="employee : ${allEmployees}"
+                            th:value="${employee.employeeId}"
+                            th:text="${employee.firstName}">
+                    </option>
+                </select>
+            </div>
+            <div class="form-group form-check pl-5">
+                <label class="form-check-label">
+                    <input class="form-check-input" type="checkbox" name="remember" required> Details are correct?
+                </label>
 
-            <textarea type="text" placeholder="Enter Project Description" th:field="${theProject.description}"></textarea>
-
-            <select th:field="*{employees}" multiple="multiple">
-                <option th:each="employee : ${allEmployees}"
-                        th:value="${employee.employeeId}"
-                        th:text="${employee.firstName}">
-                </option>
-            </select>
-
-            <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-            <button type="submit">Add Project</button>
-
+                <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
+                <button type="submit" class="btn btn-primary btn-sm">Add Project</button>
+            </div>
         </form>
+
     </div>
 
+    <div th:insert="layouts :: getbootstrapjs"></div>
 </body>
 </html>

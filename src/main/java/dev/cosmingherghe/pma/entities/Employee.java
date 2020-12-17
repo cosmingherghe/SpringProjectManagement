@@ -18,11 +18,11 @@ public class Employee {
     @SequenceGenerator(name = "employee_generator", sequenceName = "employee_seq", allocationSize = 1)
     private Long employeeId;
 
-    @NotBlank
+    @NotBlank(message = "Please enter a valid name.")
     @Size(min=2, max = 50)
     private String firstName;
 
-    @Email
+    @Email(message = "Please enter a valid email.")
     private String email;
 
     @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}

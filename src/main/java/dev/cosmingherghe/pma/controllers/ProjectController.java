@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -58,5 +59,15 @@ public class ProjectController {
         projectService.save(project);
 
         return "redirect:/projects/";  //used to prevent duplicate submissions
+    }
+
+    @GetMapping("/update")
+    public String updateProject(@RequestParam("id") long id, Model model) {
+
+        Project project = projectService.findById(id);
+
+        model.addAttribute("project", project);
+
+        return "/projects/new-project";
     }
 }

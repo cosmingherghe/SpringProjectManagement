@@ -4,6 +4,7 @@ import dev.cosmingherghe.pma.dao.ProjectRepository;
 import dev.cosmingherghe.pma.dto.ChartProjStageCount;
 import dev.cosmingherghe.pma.entities.Project;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,13 @@ public class ProjectService {
     }
 
     public void deleteById(Long id) {
-        projectRepository.deleteById(id);
+
+        try {
+            projectRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+
+        }
     }
 
     public Project findById(Long id) { return projectRepository.findById(id).get(); }

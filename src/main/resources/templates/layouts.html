@@ -52,21 +52,17 @@
     <div class="row">
         <div class="col-md-6">
 
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
+            <table class="table table-hover">
+                <thead class="thead-light">
                 <tr>
-                    <th>
-                        Project Name
-                    </th>
-                    <th>
-                        Project Stage
-                    </th>
+                    <th>Project Name</th>
+                    <th>Project Stage</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="aProject : ${projectsList}">
-                    <td th:text="${aProject.name}"></td>
-                    <td th:text="${aProject.stage}"></td>
+                <tr scope="col" th:each="project : ${projectsList}">
+                    <td th:text="${project.name}"></td>
+                    <td th:text="${project.stage}"></td>
                 </tr>
                 </tbody>
             </table>
@@ -83,51 +79,53 @@
     </div>
 </div>
 
-<div th:fragment = "CurrentEmployees">
+<div th:fragment = "EmployeesAdmin">
+    <div class="col-md-8">
 
-    <h4>Current Employees</h4>
-    <hr>
+        <h4>Current Employees</h4>
+        <hr>
 
-    <a th:href="@{/employees/new}"
-       class="btn btn-primary btn-sm mb-3">
-        Add Employee
-    </a>
+        <a th:href="@{/employees/new}"
+           class="btn btn-primary btn-sm mb-3">
+            Add Employee
+        </a>
 
-    <table class="table table-hover">
-        <thead>
-        <tr>
-            <th scope="col">First Name </th>
-            <th scope="col">Email</th>
-        </tr>
-        </thead>
-        <tbody>
-            <tr th:each="employee : ${employeesList}">
-                <td scope="row" th:text="${employee.firstName}"></td>
-                <td scope="row" th:text="${employee.email}"></td>
-                <td>
-                    <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                        <div class="btn-group" role="group">
-                                <a th:href="@{/employees/update(id=${employee.employeeId})}"
-                                    class="btn btn-secondary btn-outline-primary">
-                                    Update</a>
-                                <a th:href="@{/employees/delete(id=${employee.employeeId})}"
-                                    class="btn btn-secondary btn-outline-danger" onclick="if(!(confirm('Delete Employee?'))) return false">
-                                    Delete</a>
-                        </div>
-                    </div>
-                </td>
+        <table class="table table-hover">
+            <thead class="thead-light">
+            <tr>
+                <th scope="col">First Name </th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
             </tr>
-        </tbody>
-    </table>
-
+            </thead>
+            <tbody>
+                <tr th:each="employee : ${employeesList}">
+                    <td scope="row" th:text="${employee.firstName}"></td>
+                    <td scope="row" th:text="${employee.email}"></td>
+                    <td>
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group" role="group">
+                                    <a th:href="@{/employees/update(id=${employee.employeeId})}"
+                                        class="btn btn-secondary btn-outline-primary">
+                                        Update</a>
+                                    <a th:href="@{/employees/delete(id=${employee.employeeId})}"
+                                        class="btn btn-secondary btn-outline-danger" onclick="if(!(confirm('Delete Employee?'))) return false">
+                                        Delete</a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <div th:fragment = "EmployeeProjCount">
     <h4>Employees</h4>
     <hr>
 
-    <table class="table table-bordered table-striped">
-        <thead class="thead-dark">
+    <table class="table table-hover">
+        <thead class="thead-light">
         <tr>
             <th>
                 First Name
@@ -153,31 +151,38 @@
     <h4>Current Projects</h4>
 
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <a th:href="@{/projects/new}"
                class="btn btn-primary btn-sm mb-3">
                 Add Project
             </a>
 
-            <table class="table table-bordered table-striped">
-                <thead class="thead-dark">
+            <table class="table table-hover">
+                <thead class="thead-light">
                 <tr>
-                    <th>
-                        Project Name
-                    </th>
-                    <th>
-                        Project Description
-                    </th>
-                    <th>
-                        Project Stage
-                    </th>
+                    <th>Project Name</th>
+                    <th>Project Description</th>
+                    <th>Project Stage</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="aProject : ${projectsList}">
-                    <td th:text="${aProject.name}"></td>
-                    <td th:text="${aProject.description}"></td>
-                    <td th:text="${aProject.stage}"></td>
+                <tr th:each="project : ${projectsList}">
+                    <td th:text="${project.name}"></td>
+                    <td th:text="${project.description}"></td>
+                    <td th:text="${project.stage}"></td>
+                    <td>
+                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                            <div class="btn-group" role="group">
+                                <a th:href="@{/projects/update(id=${project.projectId})}"
+                                   class="btn btn-secondary btn-outline-primary">
+                                    Update</a>
+                                <a th:href="@{/projects/delete(id=${project.projectId})}"
+                                   class="btn btn-secondary btn-outline-danger" onclick="if(!(confirm('Delete Project?'))) return false">
+                                    Delete</a>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
                 </tbody>
             </table>

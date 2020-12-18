@@ -3,8 +3,6 @@
 ## Description
 - a web base management tool that managers can use to assign multiple projects to an employee and multiple employees to a project.
 - a real-world industry standard full-stack spring web application with production deployment.
-- involving Spring data with Javascript using Thymeleaf.
-- using Spring MVC Spring Data CRUD Repositories, Hibernate using a real database like PostgreSQL, as well as H2.
 
 
 ## What it is for
@@ -25,7 +23,7 @@ and Thymeleaf
 + Hibernate
 + Spring Annotations
 + Core Spring Concepts
-+ PostgreSQL Database
++ PostgreSQL and H2 Database
 + Integration Testing
 + Spring Security
 + Google Guava Sets

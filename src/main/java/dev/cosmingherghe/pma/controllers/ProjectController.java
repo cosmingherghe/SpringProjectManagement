@@ -70,4 +70,14 @@ public class ProjectController {
 
         return "/projects/new-project";
     }
+
+    @GetMapping("/delete")
+    public String updateProject(@RequestParam("id") long id) {
+
+        Project project = projectService.findById(id);
+
+        projectService.deleteById(id);
+
+        return "redirect:/projects/";
+    }
 }

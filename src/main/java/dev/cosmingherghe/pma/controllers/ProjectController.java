@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -49,7 +50,7 @@ public class ProjectController {
     }
 
     @PostMapping("/save")
-    public String saveProject(Project project, Model model, Errors errors) {
+    public String saveProject(@Valid Project project, Model model, Errors errors) {
         if(errors.hasErrors())
             return "/projects/new-project";
 

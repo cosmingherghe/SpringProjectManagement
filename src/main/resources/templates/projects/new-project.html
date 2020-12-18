@@ -10,11 +10,18 @@
 
         <form class="col-lg-8 offset-lg-4 was-validated" action="/projects/save" th:object="${theProject}" method="POST">
 
+            <!-- used when updating , to bind to the needed employee -->
+            <input type="hidden" th:field="${theProject.projectId}" />
+
             <div class="form-group col-md-3">
                     <input type="text" class="form-control"
                            placeholder="Project Name" th:field="${theProject.name}" required>
-                   <!-- <div class="valid-feedback">Valid.</div>
-                    <div class="invalid-feedback">Please fill out this field.</div> -->
+                   <!-- <div class="valid-feedback">Valid.
+                   <div class="invalid-feedback">Please fill out this field.</div></div> -->
+                    <span th:if="${#fields.hasErrors('name')}"
+                            th:errors="${theProject.name}">
+                    </span>
+
             </div>
             <div class="form-group col-md-3">
                 <select class="form-control is-valid" th:field="${theProject.stage}">

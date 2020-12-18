@@ -38,17 +38,17 @@ public class EmployeeController {
         Employee employee = new Employee();
         List<Project> projects = (List<Project>) projectService.findAll();
 
-        model.addAttribute("theEmployee", employee);
+        model.addAttribute("employee", employee);
         model.addAttribute("allProjects", projects);
 
         return "/employees/new-employee";
     }
 
     @PostMapping("/save")
-    public String saveEmployee(@Valid Employee employee, Model model, Errors errors) {
+    public String saveEmployee(@Valid Employee employee, Errors errors) {
 
         if(errors.hasErrors())
-            return "/employees/new-employee";
+            return "employees/new-employee";
 
         employeeService.save(employee);
 
@@ -60,7 +60,7 @@ public class EmployeeController {
 
         Employee employee = employeeService.findById(id);
 
-        model.addAttribute("theEmployee", employee);
+        model.addAttribute("employee", employee);
 
         return "/employees/new-employee";
     }

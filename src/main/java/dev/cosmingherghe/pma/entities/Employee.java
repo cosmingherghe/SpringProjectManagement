@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +18,7 @@ public class Employee {
     private Long employeeId;
 
     @NotBlank(message = "Please enter a valid name.")
-    @Size(min=2, max = 50)
+    @Size(min=2, max = 50, message = "First name must be between 2 and 50 characters")
     private String firstName;
 
     @Email(message = "Please enter a valid email.")

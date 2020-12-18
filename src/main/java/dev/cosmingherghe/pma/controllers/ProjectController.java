@@ -43,14 +43,15 @@ public class ProjectController {
         Project project = new Project();
         List<Employee> employees = (List<Employee>) employeeService.findAll();
 
-        model.addAttribute("theProject", project);
+        model.addAttribute("project", project);
         model.addAttribute("allEmployees", employees);
 
         return "/projects/new-project";
     }
 
     @PostMapping("/save")
-    public String saveProject(@Valid Project project, Model model, Errors errors) {
+    public String saveProject(@Valid Project project, Errors errors) {
+
         if(errors.hasErrors())
             return "/projects/new-project";
 

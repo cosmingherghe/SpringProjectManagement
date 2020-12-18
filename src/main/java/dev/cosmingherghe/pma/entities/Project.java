@@ -18,7 +18,7 @@ public class Project {
     private long projectId;  //outsource responsability to database, to generate an incremental ID
 
     @NotBlank(message = "Please enter a valid name.")
-    @Size(min=2, max = 50)
+    @Size(max = 50, message = "Please enter a valid name.")
     private String name;
 
     @NotNull

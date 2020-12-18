@@ -37,16 +37,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
 
-                .antMatchers("/api/**").hasAuthority(ADMIN.name())
-                .antMatchers("/projects/new").hasAuthority(ADMIN.name())
-                .antMatchers("/projects/save").hasAuthority(ADMIN.name())
-                .antMatchers("/employees/new").hasAuthority(ADMIN.name())
-                .antMatchers("/employees/save").hasAuthority(ADMIN.name())
+//                .antMatchers("/api/**").hasAuthority(ADMIN.name())
+//                .antMatchers("/projects/new").hasAuthority(ADMIN.name())
+//                .antMatchers("/projects/save").hasAuthority(ADMIN.name())
+//                .antMatchers("/employees/new").hasAuthority(ADMIN.name())
+//                .antMatchers("/employees/save").hasAuthority(ADMIN.name())
                 .antMatchers("/","/**").permitAll()
                 //.antMatchers("/h2-console","/**").permitAll()
                 //.antMatchers("/").authenticated()
-                .anyRequest()
-                .authenticated()
+                //.anyRequest()
+                //.authenticated()
                 .and()
                 //.httpBasic();
                 .formLogin();

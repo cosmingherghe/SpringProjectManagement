@@ -18,7 +18,7 @@
                            placeholder="Project Name" th:field="${project.name}" required>
                    <!-- <div class="valid-feedback">Valid.
                    <div class="invalid-feedback">Please fill out this field.</div></div> -->
-                    <span th:if="${#fields.hasErrors('name')}"
+                    <span style="color: red" th:if="${#fields.hasErrors('name')}"
                             th:errors="${project.name}">
                     </span>
 

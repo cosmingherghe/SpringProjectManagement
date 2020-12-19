@@ -1,58 +1,85 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:replace="layouts :: header">
+<head th:replace="layouts :: header">
 </head>
 <body>
-    <nav th:replace="layouts :: navbar"></nav>
+<nav th:replace="layouts :: navbar"></nav>
+<div class="container-md pt-4">
 
-    <div class="container-md pt-4">
+    <form class="col-lg-8 offset-lg-4 was-validated" method="POST" th:action="@{/projects/save}" th:object="${project}">
 
-        <form class="col-lg-8 offset-lg-4 was-validated" th:action="@{/projects/save}" th:object="${project}" method="POST">
+        <!-- used when updating , to bind to the needed employee -->
+        <input th:field="${project.projectId}" type="hidden"/>
 
-            <!-- used when updating , to bind to the needed employee -->
-            <input type="hidden" th:field="${project.projectId}" />
-
-            <div class="form-group col-md-3">
-                    <input type="text" class="form-control"
-                           placeholder="Project Name" th:field="${project.name}" required>
-                   <!-- <div class="valid-feedback">Valid.
-                   <div class="invalid-feedback">Please fill out this field.</div></div> -->
-                    <span style="color: red" th:if="${#fields.hasErrors('name')}"
-                            th:errors="${project.name}">
+        <div class="form-group col-md-3">
+            <input class="form-control" placeholder="Project Name"
+                   required th:field="${project.name}" type="text">
+            <!-- <div class="valid-feedback">Valid.
+            <div class="invalid-feedback">Please fill out this field.</div></div> -->
+            <span style="color: red" th:errors="${project.name}"
+                  th:if="${#fields.hasErrors('name')}">
                     </span>
 
+        </div>
+        <div class="form-group col-md-3">
+            <select class="form-control is-valid" th:field="${project.stage}">
+                <option th:value="NOTSTARTED"> Not Started</option>
+                <option th:value="INPROGRESS"> In Progress</option>
+                <option th:value="COMPLETED"> Completed</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3">
+            <textarea class="form-control is-valid" placeholder="Enter Project Description"
+                      th:field="${project.description}"
+                      type="text"></textarea>
+        </div>
+        <div class="form-group col-md-3">
+            <select class="form-control is-valid" multiple="multiple" th:field="*{employees}">
+                <option th:each="employee : ${allEmployees}"
+                        th:text="${employee.firstName}"
+                        th:value="${employee.employeeId}">
+                </option>
+            </select>
+        </div>
+        <!-- Calendar -->
+        <div class="form-group ml-4" style="width: 330px; overflow: hidden;">
+            <div style="width: 145px; float:left;">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                    Start Date
+                </div>
+                <div class="input-group">
+                    <input class="form-control" id="dp1" th:field="${project.startDate}" type="text" value="Start Date">
+                </div>
             </div>
-            <div class="form-group col-md-3">
-                <select class="form-control is-valid" th:field="${project.stage}">
-                    <option th:value="NOTSTARTED"> Not Started</option>
-                    <option th:value="INPROGRESS"> In Progress</option>
-                    <option th:value="COMPLETED"> Completed</option>
-                </select>
+            <div class="pl-3" style="width: 145px; overflow: hidden;">
+                <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                    End Date
+                </div>
+                <div class="input-group">
+                    <input class="form-control" id="dp2" th:field="${project.endDate}" type="text" value="End Date">
+                </div>
             </div>
-            <div class="form-group col-md-3">
-                <textarea type="text" class="form-control is-valid" placeholder="Enter Project Description" th:field="${project.description}"></textarea>
-            </div>
-            <div class="form-group col-md-3">
-                <select class="form-control is-valid" th:field="*{employees}" multiple="multiple">
-                    <option th:each="employee : ${allEmployees}"
-                            th:value="${employee.employeeId}"
-                            th:text="${employee.firstName}">
-                    </option>
-                </select>
-            </div>
-            <div class="form-group form-check pl-5">
-                <label class="form-check-label">
-                    <input class="form-check-input" type="checkbox" name="remember" required> Details are correct?
-                </label>
+        </div>
 
-                <input type="hidden" name="_csrf" th:value="${_csrf.token}" />
-                <button type="submit" class="btn btn-outline-success btn-sm">Add Project</button>
-            </div>
-        </form>
+        <script type="text/javascript">
+            $('#dp1').datepicker();
+            $('#dp2').datepicker();
+        </script>
 
-    </div>
+        <div class="form-group form-check ml-4">
+            <label class="form-check-label">
+                <input class="form-check-input" name="remember" required type="checkbox"> Details are correct?
+            </label>
 
-    <div th:insert="layouts :: getbootstrapjs"></div>
+            <input name="_csrf" th:value="${_csrf.token}" type="hidden"/>
+            <button class="btn btn-outline-success btn-sm ml-3" type="submit">Add Project</button>
+        </div>
+    </form>
+
+</div>
+
 </body>
 </html>

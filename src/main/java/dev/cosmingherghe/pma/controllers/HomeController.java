@@ -3,6 +3,7 @@ package dev.cosmingherghe.pma.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.cosmingherghe.pma.dto.ChartProjStageCount;
+import dev.cosmingherghe.pma.dto.ChartProjTimeLine;
 import dev.cosmingherghe.pma.dto.EmployeeProject;
 import dev.cosmingherghe.pma.entities.Project;
 
@@ -49,6 +50,12 @@ public class HomeController {
         ObjectMapper objectMapper = new ObjectMapper();
         String jsonProjStageCount = objectMapper.writeValueAsString(projStageCounts);
         model.addAttribute("projStageCount", jsonProjStageCount);
+
+        //Convert projData obj into json structure for user in javascript
+        List<ChartProjTimeLine> projTimeLineData = projectService.getProjTimeLineData();
+        ObjectMapper projObjectMapper = new ObjectMapper();
+        String jsonProjTimeLineData = projObjectMapper.writeValueAsString(projTimeLineData);
+        model.addAttribute("projTimeLineData", jsonProjTimeLineData);
 
         //query database for projects
         List<Project> projects = (List<Project>) projectService.findAll();

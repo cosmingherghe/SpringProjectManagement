@@ -2,6 +2,7 @@ package dev.cosmingherghe.pma.services;
 
 import dev.cosmingherghe.pma.dao.ProjectRepository;
 import dev.cosmingherghe.pma.dto.ChartProjStageCount;
+import dev.cosmingherghe.pma.dto.ChartProjTimeLine;
 import dev.cosmingherghe.pma.entities.Project;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -42,4 +43,6 @@ public class ProjectService {
     }
 
     public Project findById(Long id) { return projectRepository.findById(id).get(); }
+
+    public List<ChartProjTimeLine> getProjTimeLineData() { return  projectRepository.projTimeLineData(); }
 }

@@ -12,9 +12,9 @@
 1. Download the project
 2. Make sure spring.profiles.active=test (profiles active is set to test) (File location is in src/main/resources/   application.properties )
 3. Make sure port 8080 is not being used 
-* * (If you are on Mac you can check that running "lsof -n -i4TCP:8080", then, kill that process: "kill -9 PID")
-* * (If you are on Windows you can check that running "netstat -aon | findstr 8080", then, kill that process: "taskkill /PID <PID> /F")
-* * (If you are on Linux you can check that running "sudo netstat -tulpn | grep LISTEN", then, kill that process: "kill -9 PID")
+* (If you are on Mac you can check that running "lsof -n -i4TCP:8080", then, kill that process: "kill -9 PID")
+* If you are on Windows you can check that running "netstat -aon | findstr 8080", then, kill that process: "taskkill /PID <PID> /F")
+* (If you are on Linux you can check that running "sudo netstat -tulpn | grep LISTEN", then, kill that process: "kill -9 PID")
 4. Click run on ProjectManagementAppApplication.java (File location is in  src/main/java/dev/cosmingherghe/pma/ProjectManagementAppApplication.java )
 5. Open http://localhost:8080/ into your browser and have fun eploring the project
 6. P.S: There are 2 users: user & admin (their password have the same name)

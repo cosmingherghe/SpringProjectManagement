@@ -5,7 +5,6 @@ CREATE TABLE IF NOT EXISTS employee (
 employee_id BIGINT NOT NULL DEFAULT nextval('employee_seq') PRIMARY KEY,
 email VARCHAR(100) NOT NULL,
 first_name VARCHAR(100) NOT NULL
-
 );
 
 CREATE SEQUENCE IF NOT EXISTS project_seq;
@@ -15,8 +14,9 @@ CREATE TABLE IF NOT EXISTS project (
 project_id BIGINT NOT NULL DEFAULT nextval('project_seq') PRIMARY KEY,
 name VARCHAR(100) NOT NULL,
 stage VARCHAR(100) NOT NULL,
-description VARCHAR(500) NOT NULL
-
+description VARCHAR(500) NOT NULL,
+start_date DATE NOT NULL,
+end_date DATE NOT NULL
 );
 
 

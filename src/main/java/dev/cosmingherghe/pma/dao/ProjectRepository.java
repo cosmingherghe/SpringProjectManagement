@@ -18,9 +18,7 @@ public interface ProjectRepository extends PagingAndSortingRepository<Project, L
     @Override
     public List<Project> findAll();
 
-    @Query(nativeQuery = true, value = "SELECT name, start_date as startDate, end_date as endDate" +
-            "FROM project " +
-            "GROUP BY start_date")
+    @Query(nativeQuery = true, value = "SELECT name as projectName, start_date as startDate, end_date as endDate FROM project")
     public List<ChartProjTimeLine> projTimeLineData();
 
 }

@@ -4,7 +4,7 @@ import java.util.Date;
 
 public interface ChartProjTimeLine {
 
-    public String getName;
-    public Date getStartDate;
-    public Date getEndDate;
+    public String getProjectName();
+    public Date getStartDate();
+    public Date getEndDate();
 }

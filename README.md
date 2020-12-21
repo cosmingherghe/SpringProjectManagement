@@ -19,7 +19,7 @@
 5. Open http://localhost:8080/ into your browser and have fun eploring the project
 6. P.S: There are 2 users: user & admin (their password have the same name)
 
-##Topics covered in this project include:
+## Topics covered in this project include:
 + Spring Framework 5
 + Spring Boot 2
 + Spring MVC

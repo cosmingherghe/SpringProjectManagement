@@ -1,22 +1,23 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:fragment = "header">
+<head th:fragment="header">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/formatting.css}">
 
     <!--Font Awesome (added because you use icons in your prepend/append)-->
-    <link rel="stylesheet" href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link href="https://formden.com/static/cdn/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
-<!-- Calendar picker -->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!-- Calendar picker -->
+    <link href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet">
+    <link href="/resources/demos/style.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
@@ -24,9 +25,10 @@
 <body>
 
 
-<nav th:fragment = "navbar" class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
     <a class="navbar-brand" href="#">Project IO</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+    <button aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler"
+            data-target="#navbarTogglerDemo02" data-toggle="collapse" type="button">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -44,17 +46,17 @@
         </ul>
         <div th:switch="${loggedInUser}">
             <div th:case="'null'">
-                <a href="/login"  class="btn btn-primary">Log In</a>
+                <a class="btn btn-primary" href="/login">Log In</a>
             </div>
             <div th:case="*">
-                <button type="button" class="btn btn-outline-success" disabled th:text="${loggedInUser}"> </button>
-                <a href="/logout"  class="btn btn-primary">Log Out</a>
+                <button class="btn btn-outline-success" disabled th:text="${loggedInUser}" type="button"></button>
+                <a class="btn btn-primary" href="/logout">Log Out</a>
             </div>
         </div>
     </div>
 </nav>
 
-<div th:fragment = "CurrentProjects">
+<div th:fragment="CurrentProjects">
 
     <h4>Current Projects</h4>
     <a th:text="'v ' + ${projVersionNumber}"></a>
@@ -78,7 +80,7 @@
         </div>
 
         <div class="col-md-4">
-            <canvas id="projectsChart" height="50" width="50" ></canvas>
+            <canvas height="50" id="projectsChart" width="50"></canvas>
 
             <script>
                 var chartProjStageCount = "[[${projStageCount}]]";
@@ -88,48 +90,49 @@
     </div>
 </div>
 
-<div th:fragment = "EmployeesAdmin">
+<div th:fragment="EmployeesAdmin">
     <div class="col-md-8">
 
         <h4>Current Employees</h4>
         <hr>
 
-        <a th:href="@{/employees/new}"
-           class="btn btn-primary btn-sm mb-3">
+        <a class="btn btn-primary btn-sm mb-3"
+           th:href="@{/employees/new}">
             Add Employee
         </a>
 
         <table class="table table-hover">
             <thead class="thead-light">
             <tr>
-                <th scope="col">First Name </th>
+                <th scope="col">First Name</th>
                 <th scope="col">Email</th>
                 <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
-                <tr th:each="employee : ${employeesList}">
-                    <td scope="row" th:text="${employee.firstName}"></td>
-                    <td scope="row" th:text="${employee.email}"></td>
-                    <td>
-                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
-                            <div class="btn-group" role="group">
-                                    <a th:href="@{/employees/update(id=${employee.employeeId})}"
-                                        class="btn btn-secondary btn-outline-primary">
-                                        Update</a>
-                                    <a th:href="@{/employees/delete(id=${employee.employeeId})}"
-                                        class="btn btn-secondary btn-outline-danger" onclick="if(!(confirm('Delete Employee?'))) return false">
-                                        Delete</a>
-                            </div>
+            <tr th:each="employee : ${employeesList}">
+                <td scope="row" th:text="${employee.firstName}"></td>
+                <td scope="row" th:text="${employee.email}"></td>
+                <td>
+                    <div aria-label="Toolbar with button groups" class="btn-toolbar mb-3" role="toolbar">
+                        <div class="btn-group" role="group">
+                            <a class="btn btn-secondary btn-outline-primary"
+                               th:href="@{/employees/update(id=${employee.employeeId})}">
+                                Update</a>
+                            <a class="btn btn-secondary btn-outline-danger"
+                               onclick="if(!(confirm('Delete Employee?'))) return false"
+                               th:href="@{/employees/delete(id=${employee.employeeId})}">
+                                Delete</a>
                         </div>
-                    </td>
-                </tr>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
     </div>
 </div>
 
-<div th:fragment = "EmployeeProjCount">
+<div th:fragment="EmployeeProjCount">
     <h4>Employees</h4>
     <hr>
 
@@ -155,14 +158,14 @@
 </div>
 
 
-<div th:fragment = "ProjectsAdmin">
+<div th:fragment="ProjectsAdmin">
 
     <h4>Current Projects</h4>
 
     <div class="row">
         <div class="col-md-8">
-            <a th:href="@{/projects/new}"
-               class="btn btn-primary btn-sm mb-3">
+            <a class="btn btn-primary btn-sm mb-3"
+               th:href="@{/projects/new}">
                 Add Project
             </a>
 
@@ -181,13 +184,14 @@
                     <td th:text="${project.description}"></td>
                     <td th:text="${project.stage}"></td>
                     <td>
-                        <div class="btn-toolbar mb-3" role="toolbar" aria-label="Toolbar with button groups">
+                        <div aria-label="Toolbar with button groups" class="btn-toolbar mb-3" role="toolbar">
                             <div class="btn-group" role="group">
-                                <a th:href="@{/projects/update(id=${project.projectId})}"
-                                   class="btn btn-secondary btn-outline-primary">
+                                <a class="btn btn-secondary btn-outline-primary"
+                                   th:href="@{/projects/update(id=${project.projectId})}">
                                     Update</a>
-                                <a th:href="@{/projects/delete(id=${project.projectId})}"
-                                   class="btn btn-secondary btn-outline-danger" onclick="if(!(confirm('Delete Project?'))) return false">
+                                <a class="btn btn-secondary btn-outline-danger"
+                                   onclick="if(!(confirm('Delete Project?'))) return false"
+                                   th:href="@{/projects/delete(id=${project.projectId})}">
                                     Delete</a>
                             </div>
                         </div>
@@ -201,24 +205,47 @@
 </div>
 
 <div th:fragment="projectsTimeLine">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://www.gstatic.com/charts/loader.js" type="text/javascript"></script>
     <script type="text/javascript">
-        google.charts.load('current', {'packages':['timeline']});
+
+        var chartData = "[[${projTimeLineData}]]"
+        var chartDataDecoded = decodeHtml(chartData);
+        var chartJsonArray = JSON.parse(chartDataDecoded)
+        var resultArray = [];
+
+
+        for (var i in chartJsonArray) {
+            resultArray.push([i, chartJsonArray[i]]);
+        }
+
+        google.charts.load('current', {'packages': ['timeline']});
         google.charts.setOnLoadCallback(drawChart);
+
         function drawChart() {
-            var container = document.getElementById('timeline');
+            var container = document.getElementById('chart_div');
             var chart = new google.visualization.Timeline(container);
             var dataTable = new google.visualization.DataTable();
 
-            dataTable.addColumn({ type: 'string', id: 'President' });
-            dataTable.addColumn({ type: 'date', id: 'Start' });
-            dataTable.addColumn({ type: 'date', id: 'End' });
-            dataTable.addRows([
-                [ 'Washington', new Date(1789, 3, 30), new Date(1797, 2, 4) ],
-                [ 'Adams',      new Date(1797, 2, 4),  new Date(1801, 2, 4) ],
-                [ 'Jefferson',  new Date(1801, 2, 4),  new Date(1809, 2, 4) ]]);
+            dataTable.addColumn({type: 'string', id: 'Project'});
+            dataTable.addColumn({type: 'date', id: 'Start'});
+            dataTable.addColumn({type: 'date', id: 'End'});
+
+            for (var i = 0; i < resultArray.length; i++) {
+                dataTable.addRows([
+                    [resultArray[i][1]["projectName"],
+                        new Date(resultArray[i][1]["startDate"]),
+                        new Date(resultArray[i][1]["endDate"])]
+                ]);
+            }
+
 
             chart.draw(dataTable);
+        }
+
+        function decodeHtml(html) {
+            var txt = document.createElement("textarea");
+            txt.innerHTML = html;
+            return txt.value;
         }
     </script>
     <h4 style="padding-top: 50px">Projects Time Line</h4>
@@ -226,9 +253,15 @@
 </div>
 
 <div th:fragment="getbootstrapjs">
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s" crossorigin="anonymous"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script crossorigin="anonymous"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 </div>
 
 </body>

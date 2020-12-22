@@ -222,7 +222,7 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            var container = document.getElementById('chart_div');
+            var container = document.getElementById('projTimeLineChart');
             var chart = new google.visualization.Timeline(container);
             var dataTable = new google.visualization.DataTable();
 
@@ -249,7 +249,7 @@
         }
     </script>
     <h4 style="padding-top: 50px">Projects Time Line</h4>
-    <div id="timeline" style="height: 180px;"></div>
+    <div id="projTimeLineChart" style="height: 300px;"></div>
 </div>
 
 <div th:fragment="getbootstrapjs">
